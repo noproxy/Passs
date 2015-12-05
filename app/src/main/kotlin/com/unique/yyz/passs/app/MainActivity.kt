@@ -19,9 +19,9 @@ public class MainActivity : Activity(), View.OnClickListener {
 
 
     override fun onClick(v: View) {
-        when (v.getId()) {
+        when (v.id) {
             R.id.genButton -> {
-                val key = editText?.getText()
+                val key = editText?.text
                 if (key != null && key.length > 0) cpPass(key.toString()) else Toast.makeText(this, "no input!!!", Toast.LENGTH_SHORT).show()
             }
 
@@ -29,7 +29,7 @@ public class MainActivity : Activity(), View.OnClickListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super<Activity>.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (!canRun()) this.finish()
         initView()
@@ -42,7 +42,7 @@ public class MainActivity : Activity(), View.OnClickListener {
     }
 
     fun cpPass(key: String) {
-        getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager setPrimaryClip(ClipData.newPlainText("password", key.gen()))
+        (getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).primaryClip = ClipData.newPlainText("password", key.gen())
         Toast.makeText(this, "Copyed!", Toast.LENGTH_SHORT).show()
         onBackPressed()
     }
@@ -50,14 +50,14 @@ public class MainActivity : Activity(), View.OnClickListener {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.getItemId()) {
+        return when (item?.itemId) {
             R.id.action_settings -> true
-            else -> super<Activity>.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
