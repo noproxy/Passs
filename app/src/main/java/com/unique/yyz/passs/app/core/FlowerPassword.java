@@ -52,7 +52,7 @@ public class FlowerPassword {
         return "";
     }
 
-    private static String hmacMd5(String dataText, String keyText) throws UnsupportedEncodingException,
+    public static String hmacMd5(String dataText, String keyText) throws UnsupportedEncodingException,
             NoSuchAlgorithmException, InvalidKeyException {
         byte[] dataBytes = dataText.getBytes(UTF_8);
         byte[] keyBytes = keyText.getBytes(UTF_8);
